@@ -26,3 +26,7 @@ models.json
 
 # Ignore clasp config file
 .clasp.json
+
+
+# Ignore secrets file
+.secrets
