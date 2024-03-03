@@ -1,6 +1,7 @@
 name: Track Developer Activities
 
 on:
+  workflow_dispatch:
   issues:
     types: [opened, assigned, unassigned, closed]
   issue_comment:
