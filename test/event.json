@@ -1,0 +1,19 @@
+{
+  "action": "created",
+  "issue": {
+    "number": 1
+  },
+  "comment": {
+    "body": "This is a test comment."
+  },
+  "repository": {
+    "id": 123,
+    "name": "hack-for-la-website",
+    "owner": {
+      "login": "jackcasica"
+    }
+  },
+  "sender": {
+    "login": "jackcasica"
+  }
+}

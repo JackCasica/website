@@ -1,0 +1,17 @@
+{
+  "action": "opened",
+  "issue": {
+    "number": 1,
+    "user": {
+      "login": "example-user"
+    },
+    "title": "Example Issue Title",
+    "body": "This is an example issue for testing purposes."
+  },
+  "repository": {
+    "name": "example-repo",
+    "owner": {
+      "login": "example-owner"
+    }
+  }
+}
