@@ -9,38 +9,43 @@ Determine the contributor generating the event/activity:
 - #[ISSUE # or PR# or link to comment ] has been [ACTIVITY DESCRIPTION] by [REPLACE WITH CONTRIBUTOR GITHUB HANDLE]
 */
 
-async function determineEventType(context) {
-  const eventType = context.eventName
+async function generateComment(context) {
+  console.log(context.payload.issue.user)
+  const eventName = context.eventName
   const eventAction = context.payload.action
   const number = context.issue.number
 
   let username; 
+  let eventNameString;
 
-  switch(eventType) {
+  switch(eventName) {
     case 'issues':
+      eventNameString = "Issue"
       username = context.payload.issue.user.login;
       break;
     case 'issue_comment':
-      console.log(context)
+      eventNameString = "Issue Comment"
       username = context.payload.comment.user.login;
       break;
     case 'pull_request':
-      console.log(context.payload.pull_request.user)
+      eventNameString = "Pull Request"
       username = context.payload.pull_request.user.login;
       break;
     case 'pull_request_review':
+      eventNameString = "Pull Request Review"
+      username = context.payload.review.user.login;
+      break;
     case 'pull_request_review_comment':
+      eventNameString = "Pull Request Review Comment"
       username = context.payload.review.user.login;
       break;
   }
 
-
-
-  const comment = `#${number} has been ${eventAction} by @${username}, ${context}`
+  const comment = `${eventNameString} #${number} has been ${eventAction} by @${username}`
   return comment;
 
 }
 
 
 
-module.exports = determineEventType
+module.exports = generateComment

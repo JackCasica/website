@@ -1,7 +1,6 @@
 name: Track Developer Activities
 
 on:
-  workflow_dispatch:
   issues:
     types: [opened, assigned, unassigned, closed]
   issue_comment:
@@ -22,40 +21,23 @@ jobs:
         id: checkout-code
         uses: actions/checkout@v4
 
-      # Gets the prework issue of the developer who triggered the workflow
-      - name: Find Prework Issue
-        id: find-prework-issue
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |   
-            const findPreworkIssue = require('./github-actions/trigger-issue/track-developer-activities/find-prework-issue.js')
-            const preworkIssueDetails = await findPreworkIssue({g: github, c: context})
-            return preworkIssueDetails
-
-      # Get details of the event that triggered the workflow
-      - name: Determine Event Type 
-        id: determine-event-type
+      # Get details of the event that triggered the workflow and generate comment about it
+      - name: Generate Comment 
+        id: generate-comment
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const getEventDetails = require('./github-actions/trigger-issue/track-developer-activities/determine-event-type.js');
-            console.log("🔥🔥🔥🔥",context);
-            const comment = await getEventDetails(context);
-            return comment;
-            
+            const generateComment = require('./github-actions/trigger-issue/track-developer-activities/generate-comment.js');
+            return await generateComment(context);
 
-      # Post a comment on the prework issue of the developer who triggered the workflow with the details of the event that triggered the workflow
+      # Post generated comment on the prework issue of the developer who triggered the workflow 
       - name: Post Comment on Prework
         id: post-comment-on-prework
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const preworkIssue = ${{ steps.find-prework-issue.outputs.result }};
-            console.log("🔥🔥🔥🔥",preworkIssue)
-            const comment = ${{ steps.determine-event-type.outputs.result }};
             const postIssueComment = require('./github-actions/utils/post-issue-comment.js');
-            const response = await postIssueComment(preworkIssue.number, comment, github, context)
-            console.log("✅✅✅✅",response)
+            const comment = ${{ steps.generate-comment.outputs.result }};
+            return await postIssueComment(comment, github, context)

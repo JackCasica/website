@@ -1,26 +1,22 @@
-/**
- * Posts a comment on github
- * @param {Number} issueNum - the issue number where the comment should be posted
- * @param {String} comment - the comment to be posted
- */
+const findPreworkIssue = require('../trigger-issue/track-developer-activities/find-prework-issue.js')
 
+async function postComment(comment, github, context) {
 
-async function postComment(issueNum, comment, github, context) {
-    console.log(issueNum, "Issue number")
+    const {number: issueNumber} = await findPreworkIssue({g: github, c: context})
+
     try {
         const commentResponse = await github.rest.issues.createComment({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            issue_number: issueNum,
+            issue_number: issueNumber,
             body: comment,
         });
 
-        console.log(commentResponse, "Comment posted successfully")
+        return commentResponse;
     } catch (err) {
-        console.log(err, "Error posting comment")
         throw new Error(err);
-        
     }
+
 }
 
 module.exports = postComment;
