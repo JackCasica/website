@@ -20,7 +20,8 @@ leadership:
       slack: https://hackforla.slack.com/team/U03HUJM7YCX
       github: https://github.com/Salimays
     picture: https://avatars.githubusercontent.com/Salimays
-  - name: Sabrina Heasley
+  - name: Sabrina Heasley 
+    github-handle: 
     role: Product Manager
     links:
       slack: https://hackforla.slack.com/team/U05GDBDPEDR
@@ -74,12 +75,14 @@ leadership:
       github: https://github.com/Leah0996
     picture: https://avatars.githubusercontent.com/Leah0996   
   - name: Matt Pereira
+    github-handle:
     role: Developer
     links:
       slack: https://hackforla.slack.com/team/U045XKKB5DH
       github: https://github.com/MattPereira
     picture: https://avatars.githubusercontent.com/MattPereira 
   - name: Bitian Zhang
+    github-handle:
     role: Developer
     links:
       slack: https://hackforla.slack.com/team/U04H6PYK14N

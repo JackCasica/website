@@ -36,12 +36,6 @@ leadership:
       slack: 'https://hackforla.slack.com/team/U043LGHSZFT'
       github: 'https://github.com/t-will-gillis'
     picture: https://avatars.githubusercontent.com/t-will-gillis
-  - name: Danny Do
-    role: Merge Team
-    links:
-      slack: 'https://hackforla.slack.com/team/U048G8S2YAK'
-      github: 'https://github.com/Adastros'
-    picture: https://avatars.githubusercontent.com/Adastros
   - name: Christina Or
     role: Merge Team
     links:
@@ -60,24 +54,6 @@ leadership:
       slack: https://hackforla.slack.com/team/U059K7A1VFB
       github: https://github.com/LRenDO
     picture: https://avatars.githubusercontent.com/LRenDO
-  - name: Ronald Paek
-    role: Merge Team
-    links:
-      slack: 'https://hackforla.slack.com/team/U04RS2BCESX'
-      github: 'https://github.com/ronaldpaek'
-    picture: https://avatars.githubusercontent.com/ronaldpaek
-  - name: Richard Kwang
-    role: Merge Team
-    links:
-      slack: https://hackforla.slack.com/team/U04U531MS5P
-      github: https://github.com/kwangric
-    picture: https://avatars.githubusercontent.com/kwangric
-  - name: Adrian Ang
-    role: Merge Team
-    links:
-      slack: 'https://hackforla.slack.com/team/U0596J2AZEE'
-      github: 'https://github.com/adrianang'
-    picture: https://avatars.githubusercontent.com/adrianang
   - name: J Pham
     github-handle: jphamtv
     role: Merge Team

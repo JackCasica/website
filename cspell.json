@@ -18,6 +18,8 @@
       ".github",
       "test/",
       "docker-compose.yml",
-      "_sass/"
+      "_sass/",
+      "_data/internal/credits/",
+      "_includes/design-system-page/examples/"
   ]
 }
