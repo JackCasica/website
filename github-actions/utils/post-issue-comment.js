@@ -1,13 +1,16 @@
 // Add a comment to the prework issue describing the event/activity
 async function postCommentOnPreworkIssue(comment, github, context) {
     try {
+        context.log(context);
         // Get the prework issue assigned to the issue author
-        const [preworkIssue] = await github.rest.issues.listForRepo({
+        const response = await github.rest.issues.listForRepo({
             owner: context.repo.owner,
             repo: context.repo.repo,
             creator: context.payload.issue.user.login,
             labels: 'Complexity: Prework',
         });
+        console.log(response)
+        const preworkIssue = response.data[0];
 
         // Add a comment to the prework issue describing the event/activity
         const commentResponse = await github.rest.issues.createComment({
