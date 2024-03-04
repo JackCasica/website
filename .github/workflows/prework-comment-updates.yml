@@ -41,8 +41,9 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const getEventDetails = require('./github-actions/trigger-issue/track-developer-activities/determine-event-type.js');
-            const comment = await getEventDetails(context)
-            return comment
+            console.log("🔥🔥🔥🔥",context);
+            const comment = await getEventDetails(context);
+            return comment;
             
 
       # Post a comment on the prework issue of the developer who triggered the workflow with the details of the event that triggered the workflow
