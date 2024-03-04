@@ -25,6 +25,7 @@ async function determineEventType(context) {
       username = context.payload.comment.user.login;
       break;
     case 'pull_request':
+      console.log(context)
       username = context.payload.pull_request.user.login;
       break;
     case 'pull_request_review':
@@ -41,45 +42,5 @@ async function determineEventType(context) {
 }
 
 
-
-
-const handleIssueEvent = async (context) => {
-  const action = context.payload.action
-  
-}
-
-
-const handlePullRequestEvent = async (context) => {
-  const eventType = await determineEventType(context)
-  console.log(eventType, "Event type")
-  if (eventType === "Pull Request Opened") {
-    console.log("Pull Request Opened")
-  } else if (eventType === "Pull Request Closed") {
-    console.log("Pull Request Closed")
-  } else if (eventType === "Pull Request Reopened") {
-    console.log("Pull Request Reopened")
-  } else {
-    console.log("Pull Request Event")
-  }
-}
-
-const handleIssueCommentEvent = async (context) => {
-  const eventType = await determineEventType(context)
-  const commentAuthor = context.payload.comment.user.login
-
-
-}
-
-const handlePullRequestReviewEvent = async (context) => {
-  const eventType = await determineEventType(context)
-  console.log(eventType, "Event type")
-  if (eventType === "Pull Request Review Created") {
-    console.log("Pull Request Review Created")
-  } else if (eventType === "Pull Request Review Deleted") {
-    console.log("Pull Request Review Deleted")
-  } else {
-    console.log("Pull Request Review Event")
-  }
-}
 
 module.exports = determineEventType
