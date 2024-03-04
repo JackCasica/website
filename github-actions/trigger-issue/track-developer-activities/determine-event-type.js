@@ -22,6 +22,7 @@ async function determineEventType(context) {
       username = context.payload.issue.user.login;
       break;
     case 'issue_comment':
+      console.log(context)
       username = context.payload.comment.user.login;
       break;
     case 'pull_request':
