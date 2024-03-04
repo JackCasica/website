@@ -1,16 +1,7 @@
 name: Track Developer Activities
 
-on:
-  issues:
-    types: [opened, assigned, unassigned, closed]
-  issue_comment:
-    types: [created]
-  pull_request:
-    types: [opened, closed]
-  pull_request_review:
-    types: [submitted]
-  pull_request_review_comment:
-    types: [created]
+on: 
+  workflow_call:
 
 jobs:
   Track-Activity:
@@ -28,7 +19,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const generateComment = require('./github-actions/trigger-issue/track-developer-activities/generate-comment.js');
+            const generateComment = require('./github-actions/utils/generate-comment.js');
             return await generateComment(context);
 
       # Post generated comment on the prework issue of the developer who triggered the workflow 

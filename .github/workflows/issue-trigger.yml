@@ -1,7 +1,7 @@
 name: Issue Trigger
 on:
   issues:
-    types: [opened, transferred, assigned]
+    types: [opened, transferred, assigned, unassigned, closed]
 
 jobs:
   # Adds newly created issues onto project board in the default column 'New Issue Approval' 
@@ -85,3 +85,11 @@ jobs:
             const results = ${{ steps.check-labels-prelim.outputs.result }}
             const script = require('./github-actions/trigger-issue/add-preliminary-comment/preliminary-update-comment.js')
             script({g: github, c:context},results)
+    
+  #Post comment on member's prework issue when issue is: opened, assigned, unassigned, closed
+  Post-Comment:
+    #Triggers when the issue is opened, assigned, unassigned, or closed
+    if: ${{ github.event_name == 'issues' && (github.event.action == 'opened' || github.event.action == 'assigned' || github.event.action == 'unassigned' || github.event.action == 'closed')}}
+    uses: ./.github/workflows/wc-prework-comment-updates.yml
+
+  

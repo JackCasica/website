@@ -1,0 +1,14 @@
+name: Issue Comment Trigger
+
+on:
+  issue_comment:
+    types: [created]
+
+
+
+jobs:
+  #Post comment on member's prework issue when issue is: opened, assigned, unassigned, closed
+  Post-Comment:
+    #Triggers when a comment is created on an issue
+    if: ${{ github.event.action == 'created'}}
+    uses: ./.github/workflows/wc-prework-comment-updates.yml

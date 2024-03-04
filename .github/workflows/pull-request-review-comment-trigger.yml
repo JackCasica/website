@@ -1,0 +1,12 @@
+name: Pull Request Review Comment Trigger
+
+on:
+  pull_request_review_comment: 
+    types: [created]
+
+jobs:
+  #Post comment on member's prework issue when issue is: opened, assigned, unassigned, closed
+  Post-Comment:
+    #Triggers when the PR review comment is created
+    if: ${{ github.event.action == 'created'}}
+    uses: ./.github/workflows/wc-prework-comment-updates.yml

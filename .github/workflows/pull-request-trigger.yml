@@ -65,3 +65,8 @@ jobs:
           column: 'PR Needs review (Automated Column, do not place items here manually)'
           repo-token: ${{ secrets.HACKFORLA_BOT_PA_TOKEN }}
           action: delete
+
+  #Post comment on member's prework issue when pull request is: opened, closed
+  Post-Comment:
+    if: ${{ github.event.action == 'opened' || github.event.action == 'closed'}}
+    uses: ./.github/workflows/wc-prework-comment-updates.yml

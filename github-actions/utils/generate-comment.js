@@ -10,15 +10,12 @@ Determine the contributor generating the event/activity:
 */
 
 async function generateComment(context) {
-  console.log(context.payload.issue.user)
-  const eventName = context.eventName
-  const eventAction = context.payload.action
-  const number = context.issue.number
 
   let username; 
   let eventNameString;
 
-  switch(eventName) {
+  // Based on the event type: 1) determine the github handle of the member generating the event/activity, 2) format the event name for the comment
+  switch(context.eventName) {
     case 'issues':
       eventNameString = "Issue"
       username = context.payload.issue.user.login;
@@ -41,8 +38,7 @@ async function generateComment(context) {
       break;
   }
 
-  const comment = `${eventNameString} #${number} has been ${eventAction} by @${username}`
-  return comment;
+  return `${eventNameString} #${context.issue.number} has been ${context.payload.action} by @${username}`
 
 }
 

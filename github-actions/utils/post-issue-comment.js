@@ -1,14 +1,19 @@
-const findPreworkIssue = require('../trigger-issue/track-developer-activities/find-prework-issue.js')
-
-async function postComment(comment, github, context) {
-
-    const {number: issueNumber} = await findPreworkIssue({g: github, c: context})
-
+// Add a comment to the prework issue describing the event/activity
+async function postCommentOnPreworkIssue(comment, github, context) {
     try {
+        // Get the prework issue assigned to the issue author
+        const [preworkIssue] = await github.rest.issues.listForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            creator: context.payload.issue.user.login,
+            labels: 'Complexity: Prework',
+        });
+
+        // Add a comment to the prework issue describing the event/activity
         const commentResponse = await github.rest.issues.createComment({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            issue_number: issueNumber,
+            issue_number: preworkIssue.number,
             body: comment,
         });
 
@@ -19,4 +24,4 @@ async function postComment(comment, github, context) {
 
 }
 
-module.exports = postComment;
+module.exports = postCommentOnPreworkIssue;
