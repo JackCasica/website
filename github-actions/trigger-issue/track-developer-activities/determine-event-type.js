@@ -37,7 +37,7 @@ async function determineEventType(context) {
 
 
 
-  const comment = `#${number} has been ${eventAction} by @${contributorGithubHandle}`
+  const comment = `#${number} has been ${eventAction} by @${contributorGithubHandle}, ${context}`
   return comment;
 
 }
