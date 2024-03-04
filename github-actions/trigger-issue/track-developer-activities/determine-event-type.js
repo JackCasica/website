@@ -10,7 +10,6 @@ Determine the contributor generating the event/activity:
 */
 
 async function determineEventType(context) {
-  const contributorGithubHandle = context.payload.issue.user.login
   const eventType = context.eventName
   const eventAction = context.payload.action
   const number = context.issue.number
@@ -37,7 +36,7 @@ async function determineEventType(context) {
 
 
 
-  const comment = `#${number} has been ${eventAction} by @${contributorGithubHandle}, ${context}`
+  const comment = `#${number} has been ${eventAction} by @${username}, ${context}`
   return comment;
 
 }
