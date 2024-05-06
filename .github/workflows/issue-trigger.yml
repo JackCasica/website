@@ -18,7 +18,7 @@ jobs:
         with:
           project: Project Board
           column: ${{ env.COLUMN_NAME }}
-          repo-token: ${{ secrets.HACKFORLA_BOT_PA_TOKEN }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
  
   Add-Missing-Labels-To-Issues:
     runs-on: ubuntu-latest
@@ -43,7 +43,7 @@ jobs:
           username: ${{ github.actor }}
           organization: 'hackforla'
           team: 'website-write'
-          GITHUB_TOKEN: ${{ secrets.TEAMS }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       # Checks if user is on the website-write-team
       - if: ${{ steps.checkUserMember.outputs.isTeamMember == 'true' }}
